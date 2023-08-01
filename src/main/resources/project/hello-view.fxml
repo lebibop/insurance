@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="1557.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.HelloController">
+    <TableView fx:id="table" editable="true" layoutX="15.0" layoutY="73.0" prefHeight="532.0" prefWidth="1535.0">
+      <columns>
+          <TableColumn fx:id="conclusion_date" prefWidth="90.39999103546143">
+              <graphic>
+                  <Label prefHeight="38.0" prefWidth="80.0" text="Дата&#10;заключения" textAlignment="CENTER" />
+              </graphic>
+          </TableColumn>
+          <TableColumn fx:id="company" prefWidth="87.20001220703125">
+              <graphic>
+                  <Label text="Компания" textAlignment="CENTER" />
+              </graphic>
+          </TableColumn>
+          <TableColumn fx:id="type" prefWidth="96.00001525878906">
+              <graphic>
+                  <Label text="Вид&#10;страхования" textAlignment="CENTER" />
+              </graphic>
+          </TableColumn>
+          <TableColumn fx:id="begin_date" prefWidth="97.60003662109375">
+              <graphic>
+                  <Label text="Дата&#10;начала" textAlignment="CENTER" />
+              </graphic>
+          </TableColumn>
+          <TableColumn fx:id="end_date" prefWidth="100.0">
+              <graphic>
+                  <Label text="Дата&#10;окончания" textAlignment="CENTER" />
+              </graphic>
+          </TableColumn>
+          <TableColumn fx:id="fio" prefWidth="117.5999755859375">
+              <graphic>
+                  <Label text="ФИО" textAlignment="CENTER" />
+              </graphic>
+          </TableColumn>
+          <TableColumn fx:id="contract_number" prefWidth="135.20001220703125">
+              <graphic>
+                  <Label text="№ договора" />
+              </graphic>
+          </TableColumn>
+          <TableColumn fx:id="vin" prefWidth="129.5999755859375">
+              <graphic>
+                  <Label text="VIN" />
+              </graphic>
+          </TableColumn>
+          <TableColumn fx:id="cost" prefWidth="108.79998779296875">
+              <graphic>
+                  <Label text="Стоимость" />
+              </graphic>
+          </TableColumn>
+          <TableColumn fx:id="percentage" prefWidth="40.0" text="\%" />
+          <TableColumn fx:id="payments_number" prefWidth="55.199951171875">
+              <graphic>
+                  <Label text="Кол-во&#10;выплат" textAlignment="CENTER" />
+              </graphic>
+          </TableColumn>
+          <TableColumn fx:id="kv1" prefWidth="62.400146484375">
+              <graphic>
+                  <Label text="КВ &#10;№1" />
+              </graphic>
+          </TableColumn>
+          <TableColumn fx:id="kv2" prefWidth="54.4000244140625">
+              <graphic>
+                  <Label text="КВ &#10;№2" />
+              </graphic>
+          </TableColumn>
+          <TableColumn fx:id="signature_date1" prefWidth="84.0001220703125">
+              <graphic>
+                  <Label text="Акт №1" />
+              </graphic>
+          </TableColumn>
+          <TableColumn fx:id="signature_date2" prefWidth="88.0">
+              <graphic>
+                  <Label text="Акт №2" />
+              </graphic>
+          </TableColumn>
+          <TableColumn fx:id="payment_date1" prefWidth="90.39990234375">
+              <graphic>
+                  <Label text="Выплата 1" />
+              </graphic>
+          </TableColumn>
+          <TableColumn fx:id="payment_date2" prefWidth="91.199951171875">
+              <graphic>
+                  <Label text="Выплата 2" />
+              </graphic>
+          </TableColumn>
+      </columns>
+    </TableView>
+    <TextField fx:id="search" alignment="CENTER_RIGHT" layoutX="553.0" layoutY="31.0" prefHeight="26.0" prefWidth="273.0" promptText="Search" />
+    <Button layoutX="427.0" layoutY="31.0" mnemonicParsing="false" onAction="#add" text="+" />
+    <Button layoutX="469.0" layoutY="31.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="25.0" text="-" />
+</AnchorPane>
