@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,6 +51,24 @@ public class SceneController {
 
         Parent main = loader.load();
         Scene visitScene = new Scene(main);
+
+        Button add = (Button) main.lookup("#add");
+        add.setStyle("-fx-background-color: #404040;");
+        add.setTextFill(Paint.valueOf("#f1f1f1"));
+
+        Button delete = (Button) main.lookup("#delete");
+        delete.setStyle("-fx-background-color: #404040;");
+        delete.setTextFill(Paint.valueOf("#f1f1f1"));
+
+        Button change = (Button) main.lookup("#change");
+        change.setStyle("-fx-background-color: #404040;");
+        change.setTextFill(Paint.valueOf("#f1f1f1"));
+
+        Button acts = (Button) main.lookup("#acts");
+        acts.setStyle("-fx-background-color: #404040;");
+        acts.setTextFill(Paint.valueOf("#f1f1f1"));
+
+
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(visitScene);
         window.show();

@@ -6,8 +6,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="1557.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="1557.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.HelloController">
     <TableView fx:id="table" editable="true" layoutX="15.0" layoutY="73.0" prefHeight="532.0" prefWidth="1535.0">
       <columns>
           <TableColumn fx:id="conclusion_date" prefWidth="90.39999103546143">
@@ -37,7 +38,7 @@
           </TableColumn>
           <TableColumn fx:id="fio" prefWidth="117.5999755859375">
               <graphic>
-                  <Label text="ФИО" textAlignment="CENTER" />
+                  <Label text="Фамилия" textAlignment="CENTER" />
               </graphic>
           </TableColumn>
           <TableColumn fx:id="contract_number" prefWidth="135.20001220703125">
@@ -93,7 +94,23 @@
           </TableColumn>
       </columns>
     </TableView>
-    <TextField fx:id="search" alignment="CENTER_RIGHT" layoutX="553.0" layoutY="31.0" prefHeight="26.0" prefWidth="273.0" promptText="Search" />
-    <Button layoutX="427.0" layoutY="31.0" mnemonicParsing="false" onAction="#add" text="+" />
-    <Button layoutX="469.0" layoutY="31.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="25.0" text="-" />
+    <TextField fx:id="search" layoutX="461.0" layoutY="23.0" prefHeight="30.0" prefWidth="360.0" promptText="Найти клиента" />
+    <Button fx:id="add" layoutX="15.0" layoutY="19.0" mnemonicParsing="false" onAction="#add" prefHeight="39.0" prefWidth="188.0" text="+  НОВЫЙ ПОЛИС">
+      <font>
+         <Font name="Sitka Text" size="14.0" />
+      </font></Button>
+    <Button fx:id="delete" layoutX="1355.0" layoutY="25.0" mnemonicParsing="false" onAction="#delete" prefHeight="30.0" prefWidth="188.0" text="-  удалить полис">
+      <font>
+         <Font name="Sitka Text" size="13.0" />
+      </font></Button>
+   <Button fx:id="change" layoutX="1133.0" layoutY="25.0" mnemonicParsing="false" onAction="#edit" prefHeight="30.0" prefWidth="188.0" text="+  изменения">
+      <font>
+         <Font name="Sitka Text" size="13.0" />
+      </font>
+   </Button>
+   <Button fx:id="acts" layoutX="916.0" layoutY="25.0" mnemonicParsing="false" onAction="#acts" prefHeight="30.0" prefWidth="188.0" text="+  акты и выплаты">
+      <font>
+         <Font name="Sitka Text" size="13.0" />
+      </font>
+   </Button>
 </AnchorPane>

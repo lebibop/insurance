@@ -5,21 +5,74 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.AddController">
-   <Button layoutX="33.0" layoutY="389.0" mnemonicParsing="false" onAction="#saveNewVetToDb" prefHeight="26.0" prefWidth="126.0" text="Save" />
-   <Button layoutX="183.0" layoutY="389.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="26.0" prefWidth="126.0" text="Close" />
-   <DatePicker fx:id="conclusion_date" layoutX="33.0" layoutY="48.0" promptText="Дата заключения" />
-   <ChoiceBox fx:id="company" layoutX="33.0" layoutY="87.0" prefWidth="150.0" />
-   <ChoiceBox fx:id="type" layoutX="33.0" layoutY="133.0" prefWidth="150.0" />
-   <DatePicker fx:id="begin_date" layoutX="33.0" layoutY="174.0" promptText="Дата начала" />
-   <DatePicker fx:id="end_date" layoutX="33.0" layoutY="211.0" promptText="Дата конца" />
-   <TextField fx:id="fio" layoutX="33.0" layoutY="247.0" promptText="ФИО" />
-   <TextField fx:id="contract_number" layoutX="33.0" layoutY="286.0" promptText="Номер договора" />
-   <TextField fx:id="vin" layoutX="33.0" layoutY="322.0" promptText="VIN" />
-   <ChoiceBox fx:id="percentage" layoutX="259.0" layoutY="87.0" prefWidth="150.0" />
-   <TextField fx:id="cost" layoutX="259.0" layoutY="48.0" promptText="Цена" />
-   <ChoiceBox fx:id="payments_number" layoutX="259.0" layoutY="133.0" prefWidth="150.0" />
-   <ChoiceBox fx:id="year" layoutX="251.0" layoutY="211.0" prefWidth="150.0" />
-   <TextField fx:id="kolvo" layoutX="425.0" layoutY="212.0" promptText="Количество" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="686.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.AddController">
+   <Button fx:id="save" layoutX="33.0" layoutY="627.0" mnemonicParsing="false" onAction="#saveNewVetToDb" prefHeight="34.0" prefWidth="798.0" text="Сохранить">
+      <font>
+         <Font name="Sitka Text" size="20.0" />
+      </font></Button>
+   <DatePicker fx:id="conclusion_date" layoutX="246.0" layoutY="25.0" prefHeight="36.0" prefWidth="175.0" promptText="01.01.2023" />
+   <ChoiceBox fx:id="company" layoutX="246.0" layoutY="77.0" prefHeight="36.0" prefWidth="175.0" />
+   <ChoiceBox fx:id="type" layoutX="246.0" layoutY="129.0" prefHeight="36.0" prefWidth="175.0" />
+   <DatePicker fx:id="begin_date" layoutX="246.0" layoutY="231.0" prefHeight="36.0" prefWidth="175.0" promptText="01.01.2023" />
+   <TextField fx:id="fio" layoutX="246.0" layoutY="181.0" prefHeight="36.0" prefWidth="175.0" promptText="Иванов И.И." />
+   <TextField fx:id="contract_number" layoutX="246.0" layoutY="379.0" prefHeight="36.0" prefWidth="175.0" promptText="ТТТ 1234567890" />
+   <TextField fx:id="vin" layoutX="246.0" layoutY="427.0" prefHeight="36.0" prefWidth="175.0" promptText="1234567890ABCDEFGH" />
+   <ChoiceBox fx:id="percentage" layoutX="246.0" layoutY="521.0" prefHeight="36.0" prefWidth="175.0" />
+   <TextField fx:id="cost" layoutX="246.0" layoutY="475.0" prefHeight="36.0" prefWidth="175.0" promptText="10000" />
+   <ChoiceBox fx:id="payments_number" layoutX="246.0" layoutY="567.0" prefHeight="36.0" prefWidth="175.0" />
+   <ChoiceBox fx:id="year" layoutX="246.0" layoutY="281.0" prefHeight="36.0" prefWidth="175.0" />
+   <TextField fx:id="kolvo" layoutX="246.0" layoutY="329.0" prefHeight="36.0" prefWidth="175.0" promptText="Количество" text="1" />
+   <Text layoutX="458.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Дата заключения полиса:" wrappingWidth="228.3982391357422">
+      <font>
+         <Font name="Sitka Text" size="16.0" />
+      </font>
+   </Text>
+   <Text layoutX="458.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Страховая компания:" wrappingWidth="186.7982177734375">
+      <font>
+         <Font name="Sitka Text" size="16.0" />
+      </font>
+   </Text>
+   <Text layoutX="458.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вид страхования:" wrappingWidth="186.7982177734375">
+      <font>
+         <Font name="Sitka Text" size="16.0" />
+      </font>
+   </Text>
+   <Text layoutX="457.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ФИО страхователя:" wrappingWidth="186.7982177734375">
+      <font>
+         <Font name="Sitka Text" size="16.0" />
+      </font>
+   </Text>
+   <Text layoutX="457.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Дата начала полиса:" wrappingWidth="186.7982177734375">
+      <font>
+         <Font name="Sitka Text" size="16.0" />
+      </font>
+   </Text>
+   <Text layoutX="458.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер полиса:" wrappingWidth="186.7982177734375">
+      <font>
+         <Font name="Sitka Text" size="16.0" />
+      </font>
+   </Text>
+   <Text layoutX="457.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VIN номер:" wrappingWidth="186.7982177734375">
+      <font>
+         <Font name="Sitka Text" size="16.0" />
+      </font>
+   </Text>
+   <Text layoutX="457.0" layoutY="499.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Стоимость полиса:" wrappingWidth="186.7982177734375">
+      <font>
+         <Font name="Sitka Text" size="16.0" />
+      </font>
+   </Text>
+   <Text layoutX="458.0" layoutY="547.0" strokeType="OUTSIDE" strokeWidth="0.0" text="КВ в %:" wrappingWidth="186.7982177734375">
+      <font>
+         <Font name="Sitka Text" size="16.0" />
+      </font>
+   </Text>
+   <Text layoutX="458.0" layoutY="592.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Количество выплат по КВ:" wrappingWidth="215.59820556640625">
+      <font>
+         <Font name="Sitka Text" size="16.0" />
+      </font>
+   </Text>
 </AnchorPane>

@@ -82,7 +82,7 @@ public class insuranceService {
      */
     public List<insurance> getinsurances() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from insurance", insurance.class).list();
+            return session.createQuery("from insurance order by conclusion_date desc", insurance.class).list();
         } catch (Exception ex) {
             ex.printStackTrace();
             return new ArrayList<>();

@@ -33,6 +33,7 @@ import java.net.URL;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
@@ -95,6 +96,98 @@ public class HelloController implements Initializable {
         if(UpdateStatus.isIsInsuranceAdded()) {
             refreshScreen(event);
             UpdateStatus.setIsInsuranceAdded(false);
+        }
+    }
+
+    @FXML
+    private void edit(ActionEvent event) {
+        try {
+            int selectedID = table.getSelectionModel().getSelectedIndex();
+            if (selectedID == -1) throw new MyException();
+            insurance selectedItem = table.getSelectionModel().getSelectedItem();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("edit.fxml"));
+
+                Parent root = loader.load();
+                // получение контроллера для окна редактирования
+                EditController editController = loader.getController();
+                // передаем выбранный элемент в контроллер
+                editController.setEditedObject(selectedItem);
+
+                // создание нового окна
+                Stage editStage = new Stage();
+                editStage.setTitle("Edit object");
+                editStage.setScene(new Scene(root));
+                // отображение нового окна как модального
+                editStage.initModality(Modality.APPLICATION_MODAL);
+                editStage.showAndWait();
+                if (UpdateStatus.isIsInsuranceAdded()) {
+                    refreshScreen(event);
+                    UpdateStatus.setIsInsuranceAdded(false);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        catch (MyException ex){
+            Alert IOAlert = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
+            IOAlert.setContentText("Select row to edit");
+            IOAlert.showAndWait();
+            if(IOAlert.getResult() == ButtonType.OK)
+            {
+                IOAlert.close();
+            }
+        }
+    }
+
+    @FXML
+    private void acts(ActionEvent event) {
+        try {
+            int selectedID = table.getSelectionModel().getSelectedIndex();
+            if (selectedID == -1) throw new MyException();
+            insurance selectedItem = table.getSelectionModel().getSelectedItem();
+            try {
+                FXMLLoader loader;
+                Parent root;
+                if (selectedItem.getPayments_number() == 2) {
+                    loader = new FXMLLoader(getClass().getResource("acts.fxml"));
+                    root = loader.load();
+                    // получение контроллера для окна редактирования
+                    ActsController editController = loader.getController();
+                    editController.setEditedObject(selectedItem);
+                }
+                else {
+                    loader = new FXMLLoader(getClass().getResource("acts2.fxml"));
+                    root = loader.load();
+                    // получение контроллера для окна редактирования
+                    Acts2Controller editController = loader.getController();
+                    editController.setEditedObject(selectedItem);
+                }
+
+
+                // создание нового окна
+                Stage editStage = new Stage();
+                editStage.setTitle("Edit acts object");
+                editStage.setScene(new Scene(root));
+                // отображение нового окна как модального
+                editStage.initModality(Modality.APPLICATION_MODAL);
+                editStage.showAndWait();
+                if (UpdateStatus.isIsInsuranceAdded()) {
+                    refreshScreen(event);
+                    UpdateStatus.setIsInsuranceAdded(false);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        catch (MyException ex){
+            Alert IOAlert = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
+            IOAlert.setContentText("Select row to edit");
+            IOAlert.showAndWait();
+            if(IOAlert.getResult() == ButtonType.OK)
+            {
+                IOAlert.close();
+            }
         }
     }
 
@@ -494,8 +587,18 @@ public class HelloController implements Initializable {
         table.setEditable(true);
         table.setItems(getSortedList());
 
+        table.setRowFactory(tv -> {
+            TableRow<insurance> row = new TableRow<>();
+            row.setStyle("-fx-background-color: white;"); // Здесь можно указать цвет, который вы хотите использовать
 
+            row.selectedProperty().addListener((obs, oldVal, newVal) -> {
+                if (newVal) {
+                    row.setStyle("-fx-background-color: #d70e17;"); // Здесь можно указать цвет для выделенной строки
+                }
+            });
 
+            return row;
+        });
 //
 //        signature_date2.setCellFactory(column -> new TableCell<insurance, LocalDate>() {
 //            @Override

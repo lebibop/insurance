@@ -20,8 +20,6 @@ public class AddController implements Initializable  {
     @FXML
     private DatePicker begin_date;
     @FXML
-    private DatePicker end_date;
-    @FXML
     private TextField fio;
     @FXML
     private TextField contract_number;
@@ -66,9 +64,9 @@ public class AddController implements Initializable  {
      */
     public static boolean isNumeric(String str) {
         try {
-            return Integer.parseInt(str) >= 0;
+            return Integer.parseInt(str) < 0;
         } catch(NumberFormatException e){
-            return false;
+            return true;
         }
     }
 
@@ -78,8 +76,8 @@ public class AddController implements Initializable  {
      */
     private boolean validateInputs() {
         Alert IOAlert = new Alert(Alert.AlertType.ERROR, "Input Error", ButtonType.OK);
-        if (fio.getText().equals("") || contract_number.getText().equals("") || vin.getText().equals("") || cost.getText().equals("") || company.getValue().equals("Компания") || type.getValue().equals("Тип страховки") || conclusion_date.getValue() == null || begin_date.getValue() == null) {
-            IOAlert.setContentText("You must fill empty field(-s) to continue");
+        if (fio.getText().equals("") || contract_number.getText().equals("") || cost.getText().equals("")|| conclusion_date.getValue() == null || begin_date.getValue() == null || year.getValue().equals("год/месяц/день")) {
+            IOAlert.setContentText("Заполнены не все поля!");
             IOAlert.showAndWait();
             if(IOAlert.getResult() == ButtonType.OK)
             {
@@ -88,15 +86,25 @@ public class AddController implements Initializable  {
             return false;
         }
 
-//        if (!isNumeric(exp.getText())){
-//            IOAlert.setContentText("Incorrect toe input for EXPERIENCE - you must input a number (>=0)");
-//            IOAlert.showAndWait();
-//            if(IOAlert.getResult() == ButtonType.OK)
-//            {
-//                IOAlert.close();
-//            }
-//            return false;
-//        }
+        if (isNumeric(kolvo.getText())){
+            IOAlert.setContentText("Для поля КОЛИЧЕСТВО нужно ввести ЧИСЛО");
+            IOAlert.showAndWait();
+            if(IOAlert.getResult() == ButtonType.OK)
+            {
+                IOAlert.close();
+            }
+            return false;
+        }
+
+        if (isNumeric(cost.getText())){
+            IOAlert.setContentText("Для поля СТОИМОСТЬ нужно ввести ЧИСЛО");
+            IOAlert.showAndWait();
+            if(IOAlert.getResult() == ButtonType.OK)
+            {
+                IOAlert.close();
+            }
+            return false;
+        }
 
 
         return true;
@@ -127,16 +135,13 @@ public class AddController implements Initializable  {
         vet.setCompany(company.getValue());
         vet.setType(type.getValue());
         vet.setBegin_date(begin_date.getValue());
-        if (!year.getValue().equals("Годы/Месяцы/Дни")){
-            if (year.getValue().equals("Годы"))
+        if (year.getValue().equals("Год"))
                 vet.setEnd_date(begin_date.getValue().plusYears(Integer.parseInt(kolvo.getText())).minusDays(1));
-            if (year.getValue().equals("Месяцы"))
+        if (year.getValue().equals("Месяц"))
                 vet.setEnd_date(begin_date.getValue().plusMonths(Integer.parseInt(kolvo.getText())).minusDays(1));
-            if (year.getValue().equals("Дни"))
+        if (year.getValue().equals("День"))
                 vet.setEnd_date(begin_date.getValue().plusDays(Integer.parseInt(kolvo.getText())).minusDays(1));
-        }
-        else vet.setEnd_date(end_date.getValue());
-        vet.setFio(fio.getText());
+        vet.setFio((fio.getText()).toUpperCase());
         vet.setContract_number(contract_number.getText().toUpperCase());
         vet.setVin(vin.getText().toUpperCase());
         vet.setCost(Integer.parseInt(cost.getText()));
@@ -179,15 +184,17 @@ public class AddController implements Initializable  {
 
         company.getItems().addAll("РЕСО", "РЕНЕССАНС", "ВСК", "ИНГОССТРАХ",
                 "РОСГОССТРАХ", "СБЕР", "ЮГОРИЯ", "СОВКОМ", "ЗЕТТА", "ГЕЛЛИОС", "АЛЬФА");
-        company.setValue("Компания");
-        type.getItems().addAll("ОСАГО", "КАСКО", "ИПОТЕКА-КВ", "ИПОТЕКА-Ж",
+        company.setValue("ИНГОССТРАХ");
+        type.getItems().addAll("ОСАГО", "КАСКО", "КАСКО-УГОН", "ИПОТЕКА-КВ", "ИПОТЕКА-Ж",
                 "ИПОТЕКА-ТИТ", "ИПОТЕКА-КОМ", "НС", "ЗЕЛ. КАРТА", "КВАРТИРА-ДОМ", "МИГРАНТ", "ВЗР");
-        type.setValue("Тип страховки");
+        type.setValue("ОСАГО");
         percentage.getItems().addAll(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
                 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50);
+        percentage.setValue(20);
         payments_number.getItems().addAll(1, 2);
-        year.getItems().addAll("Годы", "Месяцы", "Дни");
-        year.setValue("Годы/Месяцы/Дни");
+        payments_number.setValue(2);
+        year.getItems().addAll("Год", "Месяц", "День");
+        year.setValue("год/месяц/день");
     }
 }
 
