@@ -10,7 +10,8 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AddController implements Initializable  {
+public class EditController implements Initializable  {
+    private insurance editedObject;
     @FXML
     private DatePicker conclusion_date;
     @FXML
@@ -37,7 +38,20 @@ public class AddController implements Initializable  {
     @FXML
     private TextField kolvo;
 
+    public void setEditedObject(insurance editedObject) {
+        this.editedObject = editedObject;
 
+        conclusion_date.setValue(editedObject.getConclusion_date());
+        company.setValue(editedObject.getCompany());
+        type.setValue(editedObject.getType());
+        begin_date.setValue(editedObject.getBegin_date());
+        fio.setText(editedObject.getFio());
+        contract_number.setText(editedObject.getContract_number());
+        vin.setText(editedObject.getVin());
+        percentage.setValue(editedObject.getPercentage());
+        cost.setText(String.valueOf(editedObject.getCost()));
+        payments_number.setValue(editedObject.getPayments_number());
+    }
 
 
     /**
@@ -49,6 +63,15 @@ public class AddController implements Initializable  {
     private void saveNewVetToDb(ActionEvent event){
         if (validateInputs()) {
             insurance vet = createVetFromInput();
+            vet.setSignature_date1(editedObject.getSignature_date1());
+            vet.setPayment_date1(editedObject.getPayment_date1());
+
+            if (vet.getPayments_number() == 2) {
+                vet.setSignature_date2(editedObject.getSignature_date2());
+                vet.setPayment_date2(editedObject.getPayment_date2());
+            }
+
+            new insuranceService().deleteinsurance(editedObject);
             boolean isSaved = new insuranceService().createinsurance(vet);
             if (isSaved) {
                 UpdateStatus.setIsInsuranceAdded(true);

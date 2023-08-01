@@ -31,23 +31,23 @@ public class SceneController {
 
         logger.info("Transition to list scene");
 
-        changeScreen(event, "hello-view.fxml");
+        changeScreen(event);
     }
 
 
 
     /**
      * Метод для смены сцены на заданную.
+     *
      * @param event Событие, вызвавшее смену сцены.
-     * @param path Путь к файлу FXML новой сцены.
      * @throws IOException Если произошла ошибка ввода-вывода при загрузке сцены.
      */
-    private static void changeScreen(ActionEvent event, String path) throws IOException
+    private static void changeScreen(ActionEvent event) throws IOException
     {
         logger.info("Changing scene");
 
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Objects.requireNonNull(SceneController.class.getResource(path)));
+        loader.setLocation(Objects.requireNonNull(SceneController.class.getResource("hello-view.fxml")));
 
         Parent main = loader.load();
         Scene visitScene = new Scene(main);

@@ -47,11 +47,4 @@ public class HibernateUtil {
         }
         return sessionFactory;
     }
-
-    /**
-     * Закрывает объект SessionFactory и освобождает все связанные с ним ресурсы.
-     */
-    public static void shutdown() {
-        getSessionFactory().close();
-    }
 }

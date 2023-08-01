@@ -36,7 +36,7 @@ public class HelloApplication extends Application {
 
 
         MainStage.setScene(MainScene);
-        MainStage.setTitle("Hotel");
+        MainStage.setTitle("Страхование");
         MainStage.show();
     }
 

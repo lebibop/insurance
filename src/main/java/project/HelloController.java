@@ -1,8 +1,5 @@
 package project;
 
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -15,25 +12,16 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.ChoiceBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
@@ -83,8 +71,6 @@ public class HelloController implements Initializable {
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         return decimalFormat.format(number);
     }
-
-
 
     @FXML
     void refreshScreen(ActionEvent event) throws IOException {
@@ -303,7 +289,7 @@ public class HelloController implements Initializable {
 
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yy"); // Здесь указывается новый формат вывода даты
 
-        Callback<TableColumn<insurance, LocalDate>, TableCell<insurance, LocalDate>> cellFactory = column -> new TableCell<insurance, LocalDate>() {
+        Callback<TableColumn<insurance, LocalDate>, TableCell<insurance, LocalDate>> cellFactory = column -> new TableCell<>() {
             @Override
             protected void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
@@ -338,7 +324,7 @@ public class HelloController implements Initializable {
             }
         };
 
-        Callback<TableColumn<insurance, String>, TableCell<insurance, String>> cellFactoryString = column -> new TableCell<insurance, String>() {
+        Callback<TableColumn<insurance, String>, TableCell<insurance, String>> cellFactoryString = column -> new TableCell<>() {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -373,7 +359,7 @@ public class HelloController implements Initializable {
             }
         };
 
-        Callback<TableColumn<insurance, Integer>, TableCell<insurance, Integer>> cellFactoryInt = column -> new TableCell<insurance, Integer>() {
+        Callback<TableColumn<insurance, Integer>, TableCell<insurance, Integer>> cellFactoryInt = column -> new TableCell<>() {
             @Override
             protected void updateItem(Integer item, boolean empty) {
                 super.updateItem(item, empty);
@@ -387,27 +373,6 @@ public class HelloController implements Initializable {
             }
         };
 
-//        Callback<TableColumn<insurance, LocalDate>, TableCell<insurance, LocalDate>> cellFactoryDate2 = column -> new TableCell<insurance, LocalDate>() {
-//            @Override
-//            protected void updateItem(LocalDate item, boolean empty) {
-//                super.updateItem(item, empty);
-//                insurance insurance = getTableRow().getItem();
-//                if ((empty || item == null) && insurance == null) {
-//                    setText(null);
-//                    setStyle(""); // Сбрасывает стиль ячейки
-//                } else {
-//                    setText("Не было");
-//                    setTextFill(Color.WHITE);
-//                    setAlignment(Pos.CENTER);
-//                    if (insurance != null && insurance.getPayments_number() == 1) {
-//                        setText(null);
-//                        setStyle("-fx-background-color: #4d5660"); // Задает черный фон и белый текст для ячейки
-//                    } else {
-//                        setStyle("-fx-background-color: #f58871"); // Сбрасывает стиль ячейки, если она не должна быть закрашена
-//                    }
-//                }
-//            }
-//        };
 
         conclusion_date.setCellFactory(cellFactory);
         begin_date.setCellFactory(cellFactory);
@@ -416,13 +381,12 @@ public class HelloController implements Initializable {
         type.setCellFactory(cellFactoryString);
         fio.setCellFactory(cellFactoryString);
         contract_number.setCellFactory(cellFactoryString);
-//        vin.setCellFactory(cellFactoryString);
         percentage.setCellFactory(cellFactoryInt);
         payments_number.setCellFactory(cellFactoryInt);
 
 
 
-        signature_date1.setCellFactory(column -> new TableCell<insurance, LocalDate>() {
+        signature_date1.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
@@ -445,7 +409,7 @@ public class HelloController implements Initializable {
             }
         });
 
-        payment_date1.setCellFactory(column -> new TableCell<insurance, LocalDate>() {
+        payment_date1.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
@@ -469,7 +433,7 @@ public class HelloController implements Initializable {
         });
 
 
-        signature_date2.setCellFactory(column -> new TableCell<insurance, LocalDate>() {
+        signature_date2.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
@@ -497,7 +461,7 @@ public class HelloController implements Initializable {
             }
         });
 
-        payment_date2.setCellFactory(column -> new TableCell<insurance, LocalDate>() {
+        payment_date2.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
@@ -525,12 +489,7 @@ public class HelloController implements Initializable {
             }
         });
 
-
-
-
-
-
-        kv2.setCellFactory(column -> new TableCell<insurance, Integer>() {
+        kv2.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Integer kv1, boolean empty) {
                 super.updateItem(kv1, empty);
@@ -554,7 +513,7 @@ public class HelloController implements Initializable {
             }
         });
 
-        cost.setCellFactory(column -> new TableCell<insurance, Integer>() {
+        cost.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Integer cost, boolean empty) {
                 super.updateItem(cost, empty);
@@ -569,7 +528,7 @@ public class HelloController implements Initializable {
             }
         });
 
-        kv1.setCellFactory(column -> new TableCell<insurance, Integer>() {
+        kv1.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Integer kv1, boolean empty) {
                 super.updateItem(kv1, empty);
@@ -599,303 +558,5 @@ public class HelloController implements Initializable {
 
             return row;
         });
-//
-//        signature_date2.setCellFactory(column -> new TableCell<insurance, LocalDate>() {
-//            @Override
-//            protected void updateItem(LocalDate signature_date1, boolean empty) {
-//                super.updateItem(signature_date1, empty);
-//                if (empty || signature_date2 == null) {
-//                    setText(null);
-//                    setStyle(""); // Сбрасывает стиль ячейки
-//                } else {
-//                    setText("Не было");
-//                    setTextFill(Color.WHITE);
-//                    setAlignment(Pos.CENTER);
-//                    insurance insurance = getTableRow().getItem();
-//                    if (insurance != null && insurance.getPayments_number() == 1) {
-//                        setText(null);
-//                        setStyle("-fx-background-color: #4d5660"); // Задает черный фон и белый текст для ячейки
-//                    } else {
-//                        setStyle("-fx-background-color: #f58871"); // Сбрасывает стиль ячейки, если она не должна быть закрашена
-//                    }
-//                }
-//            }
-//        });
-
-//        company.setCellFactory(column -> {
-//            return new TableCell<insurance, String>() {
-//                @Override
-//                protected void updateItem(String item, boolean empty) {
-//                    super.updateItem(item, empty);
-//                    setStyle("");
-//                    if (!empty && item != null) {
-//                        switch (item) {
-//                            case "РЕНЕССАНС" -> setStyle("-fx-background-color: #d885d9;");
-//                            case "ВСК" -> setStyle("-fx-background-color: #aedef0;");
-//                            case "ИНГОССТРАХ" -> setStyle("-fx-background-color: #7bb0db;");
-//                            case "РОСГОССТРАХ" -> setStyle("-fx-background-color: #f4abb4;");
-//                            case "СБЕР" -> setStyle("-fx-background-color: #9ead7c;");
-//                            case "ЮГОРИЯ" -> setStyle("-fx-background-color: #dddce9;");
-//                            case "СОВКОМ" -> setStyle("-fx-background-color: #e4dfd1;");
-//                            case "ЗЕТТА" -> setStyle("-fx-background-color: #cdda61;");
-//                            case "ГЕЛЛИОС" -> setStyle("-fx-background-color: #ffcc85;");
-//                            case "АЛЬФА" -> setStyle("-fx-background-color: #ff8682;");
-//                            default ->
-//                                    setStyle(null); // Сбросить стиль строки таблицы, если значение не совпадает с предопределенными значениями
-//                        }
-//                    } else {
-//                        setStyle(null); // Сбросить стиль строки таблицы, если ячейка пуста или имеет значение null
-//                    }
-//                    // Выводим значение ячейки
-//                    setText(item);
-//                }
-//            };
-//        });
-//
-//        type.setCellFactory(column -> {
-//            return new TableCell<insurance, String>() {
-//                @Override
-//                protected void updateItem(String item, boolean empty) {
-//                    super.updateItem(item, empty);
-//                    setStyle("");
-//                    insurance ins = getTableRow().getItem();
-//                    if (!empty && item != null && ins!= null) {
-//                        switch (ins.getCompany()) {
-//                            case "РЕНЕССАНС" -> setStyle("-fx-background-color: #d885d9;");
-//                            case "ВСК" -> setStyle("-fx-background-color: #aedef0;");
-//                            case "ИНГОССТРАХ" -> setStyle("-fx-background-color: #7bb0db;");
-//                            case "РОСГОССТРАХ" -> setStyle("-fx-background-color: #f4abb4;");
-//                            case "СБЕР" -> setStyle("-fx-background-color: #9ead7c;");
-//                            case "ЮГОРИЯ" -> setStyle("-fx-background-color: #dddce9;");
-//                            case "СОВКОМ" -> setStyle("-fx-background-color: #e4dfd1;");
-//                            case "ЗЕТТА" -> setStyle("-fx-background-color: #cdda61;");
-//                            case "ГЕЛЛИОС" -> setStyle("-fx-background-color: #ffcc85;");
-//                            case "АЛЬФА" -> setStyle("-fx-background-color: #ff8682;");
-//                            default ->
-//                                    setStyle(null); // Сбросить стиль строки таблицы, если значение не совпадает с предопределенными значениями
-//                        }
-//                    } else {
-//                        setStyle(null); // Сбросить стиль строки таблицы, если ячейка пуста или имеет значение null
-//                    }
-//                    // Выводим значение ячейки
-//                    setText(item);
-//                }
-//            };
-//        });
-//
-//        fio.setCellFactory(column -> {
-//            return new TableCell<insurance, String>() {
-//                @Override
-//                protected void updateItem(String item, boolean empty) {
-//                    super.updateItem(item, empty);
-//                    setStyle("");
-//                    insurance ins = getTableRow().getItem();
-//                    if (!empty && item != null && ins!= null) {
-//                        switch (ins.getCompany()) {
-//                            case "РЕНЕССАНС" -> setStyle("-fx-background-color: #d885d9;");
-//                            case "ВСК" -> setStyle("-fx-background-color: #aedef0;");
-//                            case "ИНГОССТРАХ" -> setStyle("-fx-background-color: #7bb0db;");
-//                            case "РОСГОССТРАХ" -> setStyle("-fx-background-color: #f4abb4;");
-//                            case "СБЕР" -> setStyle("-fx-background-color: #9ead7c;");
-//                            case "ЮГОРИЯ" -> setStyle("-fx-background-color: #dddce9;");
-//                            case "СОВКОМ" -> setStyle("-fx-background-color: #e4dfd1;");
-//                            case "ЗЕТТА" -> setStyle("-fx-background-color: #cdda61;");
-//                            case "ГЕЛЛИОС" -> setStyle("-fx-background-color: #ffcc85;");
-//                            case "АЛЬФА" -> setStyle("-fx-background-color: #ff8682;");
-//                            default ->
-//                                    setStyle(null); // Сбросить стиль строки таблицы, если значение не совпадает с предопределенными значениями
-//                        }
-//                    } else {
-//                        setStyle(null); // Сбросить стиль строки таблицы, если ячейка пуста или имеет значение null
-//                    }
-//                    // Выводим значение ячейки
-//                    setText(item);
-//                }
-//            };
-//        });
-//
-//        contract_number.setCellFactory(column -> {
-//            return new TableCell<insurance, String>() {
-//                @Override
-//                protected void updateItem(String item, boolean empty) {
-//                    super.updateItem(item, empty);
-//                    setStyle("");
-//                    insurance ins = getTableRow().getItem();
-//                    if (!empty && item != null && ins!= null) {
-//                        switch (ins.getCompany()) {
-//                            case "РЕНЕССАНС" -> setStyle("-fx-background-color: #d885d9;");
-//                            case "ВСК" -> setStyle("-fx-background-color: #aedef0;");
-//                            case "ИНГОССТРАХ" -> setStyle("-fx-background-color: #7bb0db;");
-//                            case "РОСГОССТРАХ" -> setStyle("-fx-background-color: #f4abb4;");
-//                            case "СБЕР" -> setStyle("-fx-background-color: #9ead7c;");
-//                            case "ЮГОРИЯ" -> setStyle("-fx-background-color: #dddce9;");
-//                            case "СОВКОМ" -> setStyle("-fx-background-color: #e4dfd1;");
-//                            case "ЗЕТТА" -> setStyle("-fx-background-color: #cdda61;");
-//                            case "ГЕЛЛИОС" -> setStyle("-fx-background-color: #ffcc85;");
-//                            case "АЛЬФА" -> setStyle("-fx-background-color: #ff8682;");
-//                            default ->
-//                                    setStyle(null); // Сбросить стиль строки таблицы, если значение не совпадает с предопределенными значениями
-//                        }
-//                    } else {
-//                        setStyle(null); // Сбросить стиль строки таблицы, если ячейка пуста или имеет значение null
-//                    }
-//                    // Выводим значение ячейки
-//                    setText(item);
-//                }
-//            };
-//        });
-//
-//        vin.setCellFactory(column -> {
-//            return new TableCell<insurance, String>() {
-//                @Override
-//                protected void updateItem(String item, boolean empty) {
-//                    super.updateItem(item, empty);
-//                    setStyle("");
-//                    insurance ins = getTableRow().getItem();
-//                    if (!empty && item != null && ins!= null) {
-//                        switch (ins.getCompany()) {
-//                            case "РЕНЕССАНС" -> setStyle("-fx-background-color: #d885d9;");
-//                            case "ВСК" -> setStyle("-fx-background-color: #aedef0;");
-//                            case "ИНГОССТРАХ" -> setStyle("-fx-background-color: #7bb0db;");
-//                            case "РОСГОССТРАХ" -> setStyle("-fx-background-color: #f4abb4;");
-//                            case "СБЕР" -> setStyle("-fx-background-color: #9ead7c;");
-//                            case "ЮГОРИЯ" -> setStyle("-fx-background-color: #dddce9;");
-//                            case "СОВКОМ" -> setStyle("-fx-background-color: #e4dfd1;");
-//                            case "ЗЕТТА" -> setStyle("-fx-background-color: #cdda61;");
-//                            case "ГЕЛЛИОС" -> setStyle("-fx-background-color: #ffcc85;");
-//                            case "АЛЬФА" -> setStyle("-fx-background-color: #ff8682;");
-//                            default ->
-//                                    setStyle(null); // Сбросить стиль строки таблицы, если значение не совпадает с предопределенными значениями
-//                        }
-//                    } else {
-//                        setStyle(null); // Сбросить стиль строки таблицы, если ячейка пуста или имеет значение null
-//                    }
-//                    // Выводим значение ячейки
-//                    setText(item);
-//                }
-//            };
-//        });
-
-//        begin_date.setCellFactory(column -> {
-//            return new TableCell<insurance, LocalDate>() {
-//                @Override
-//                protected void updateItem(LocalDate item, boolean empty) {
-//                    super.updateItem(item, empty);
-//                    setStyle("");
-//                    insurance ins = getTableRow().getItem();
-//                    if (!empty && item != null && ins!= null) {
-//                        switch (ins.getCompany()) {
-//                            case "РЕНЕССАНС" -> setStyle("-fx-background-color: #d885d9;");
-//                            case "ВСК" -> setStyle("-fx-background-color: #aedef0;");
-//                            case "ИНГОССТРАХ" -> setStyle("-fx-background-color: #7bb0db;");
-//                            case "РОСГОССТРАХ" -> setStyle("-fx-background-color: #f4abb4;");
-//                            case "СБЕР" -> setStyle("-fx-background-color: #9ead7c;");
-//                            case "ЮГОРИЯ" -> setStyle("-fx-background-color: #dddce9;");
-//                            case "СОВКОМ" -> setStyle("-fx-background-color: #e4dfd1;");
-//                            case "ЗЕТТА" -> setStyle("-fx-background-color: #cdda61;");
-//                            case "ГЕЛЛИОС" -> setStyle("-fx-background-color: #ffcc85;");
-//                            case "АЛЬФА" -> setStyle("-fx-background-color: #ff8682;");
-//                            default ->
-//                                    setStyle(null); // Сбросить стиль строки таблицы, если значение не совпадает с предопределенными значениями
-//                        }
-//                    } else {
-//                        setStyle(null); // Сбросить стиль строки таблицы, если ячейка пуста или имеет значение null
-//                    }
-//                    // Выводим значение ячейки
-//                    if (item!=null) {
-//                        setText(item.format(dateFormatter));
-//                        setAlignment(Pos.CENTER);
-//                    }
-//                    else
-//                        setText(null);
-//
-//                }
-//            };
-//        });
-//
-//        end_date.setCellFactory(column -> {
-//            return new TableCell<insurance, LocalDate>() {
-//                @Override
-//                protected void updateItem(LocalDate item, boolean empty) {
-//                    super.updateItem(item, empty);
-//                    setStyle("");
-//                    insurance ins = getTableRow().getItem();
-//                    if (!empty && item != null && ins!= null) {
-//                        switch (ins.getCompany()) {
-//                            case "РЕНЕССАНС" -> setStyle("-fx-background-color: #d885d9;");
-//                            case "ВСК" -> setStyle("-fx-background-color: #aedef0;");
-//                            case "ИНГОССТРАХ" -> setStyle("-fx-background-color: #7bb0db;");
-//                            case "РОСГОССТРАХ" -> setStyle("-fx-background-color: #f4abb4;");
-//                            case "СБЕР" -> setStyle("-fx-background-color: #9ead7c;");
-//                            case "ЮГОРИЯ" -> setStyle("-fx-background-color: #dddce9;");
-//                            case "СОВКОМ" -> setStyle("-fx-background-color: #e4dfd1;");
-//                            case "ЗЕТТА" -> setStyle("-fx-background-color: #cdda61;");
-//                            case "ГЕЛЛИОС" -> setStyle("-fx-background-color: #ffcc85;");
-//                            case "АЛЬФА" -> setStyle("-fx-background-color: #ff8682;");
-//                            default ->
-//                                    setStyle(null); // Сбросить стиль строки таблицы, если значение не совпадает с предопределенными значениями
-//                        }
-//                    } else {
-//                        setStyle(null); // Сбросить стиль строки таблицы, если ячейка пуста или имеет значение null
-//                    }
-//                    // Выводим значение ячейки
-//                    if (item!=null){
-//                        setText(item.format(dateFormatter));
-//                        setAlignment(Pos.CENTER);
-//                    }
-//                    else
-//                        setText(null);
-//
-//                }
-//            };
-//        });
-
-//        percentage.setCellFactory(column -> {
-//            return new TableCell<insurance, Integer>() {
-//                @Override
-//                protected void updateItem(Integer item, boolean empty) {
-//                    super.updateItem(item, empty);
-//
-//                    if (empty || item == null) {
-//                        setText(null);
-//                    } else {
-//                        setText(String.valueOf(item));
-//                        setAlignment(Pos.CENTER); // Установить выравнивание текста по центру
-//                        setStyle("-fx-font-weight: bold");
-//                    }
-//                }
-//            };
-//        });
-//        payments_number.setCellFactory(column -> {
-//            return new TableCell<insurance, Integer>() {
-//                @Override
-//                protected void updateItem(Integer item, boolean empty) {
-//                    super.updateItem(item, empty);
-//
-//                    if (empty || item == null) {
-//                        setText(null);
-//                    } else {
-//                        setText(String.valueOf(item));
-//                        setAlignment(Pos.CENTER); // Установить выравнивание текста по центру
-//                    }
-//                }
-//            };
-//        });
-
-
-//        conclusion_date.setCellFactory(new LocalDateCellFactory());
-//        company.setCellFactory(ChoiceBoxTableCell.forTableColumn("РЕСО", "РЕНЕССАНС", "ВСК", "ИНГОССТРАХ",
-//                "РОСГОССТРАХ", "СБЕР", "ЮГОРИЯ", "СОВКОМ", "ЗЕТТА", "ГЕЛЛИОС", "АЛЬФА"));
-//        type.setCellFactory(ChoiceBoxTableCell.forTableColumn("ОСАГО", "КАСКО", "ИП-КВ", "ИП-Ж",
-//                "ИП-ТИТ", "ИП-КОМ", "НС", "ЗК", "КВ-ДОМ", "МИГРАНТ", "ВЗР"));
-//        begin_date.setCellFactory(new LocalDateCellFactory());
-//        signature_date1.setCellFactory(new LocalDateCellFactory());
-//        payment_date1.setCellFactory(new LocalDateCellFactory());
-//        fio.setCellFactory(TextFieldTableCell.forTableColumn());
-//        contract_number.setCellFactory(TextFieldTableCell.forTableColumn());
-//        vin.setCellFactory(TextFieldTableCell.forTableColumn());
-//        cost.setCellFactory(TextFieldTableCell.forTableColumn(new CustomIntegerStringConverter()));
-//        percentage.setCellFactory(ChoiceBoxTableCell.forTableColumn(0,10,20,30));
-//        payments_number.setCellFactory(ChoiceBoxTableCell.forTableColumn(1, 2));
     }
 }
