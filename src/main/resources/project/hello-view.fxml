@@ -45,11 +45,6 @@
                   <Label text="№ договора" />
               </graphic>
           </TableColumn>
-          <TableColumn fx:id="vin" prefWidth="129.5999755859375">
-              <graphic>
-                  <Label text="VIN" />
-              </graphic>
-          </TableColumn>
           <TableColumn fx:id="cost" prefWidth="108.79998779296875">
               <graphic>
                   <Label text="Стоимость" />
@@ -89,6 +84,11 @@
           <TableColumn fx:id="payment_date2" prefWidth="91.199951171875">
               <graphic>
                   <Label text="Выплата 2" />
+              </graphic>
+          </TableColumn>
+          <TableColumn fx:id="vin" prefWidth="129.5999755859375">
+              <graphic>
+                  <Label text="VIN" />
               </graphic>
           </TableColumn>
       </columns>
