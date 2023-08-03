@@ -15,4 +15,10 @@ module project.insurance {
 
     opens project to javafx.fxml, org.hibernate.orm.core;
     exports project;
+    exports project.Controllers;
+    opens project.Controllers to javafx.fxml, org.hibernate.orm.core;
+    exports project.Model;
+    opens project.Model to javafx.fxml, org.hibernate.orm.core;
+    exports project.Helpers;
+    opens project.Helpers to javafx.fxml, org.hibernate.orm.core;
 }

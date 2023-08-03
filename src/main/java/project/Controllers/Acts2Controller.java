@@ -1,33 +1,30 @@
-package project;
+package project.Controllers;
 
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.DatePicker;
 import javafx.util.Duration;
+import project.Helpers.UpdateStatus;
+import project.Model.insurance;
+import project.Helpers.insuranceService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ActsController implements Initializable  {
+public class Acts2Controller implements Initializable  {
     private insurance editedObject;
     @FXML
     private DatePicker payment_date1;
     @FXML
-    private DatePicker payment_date2;
-    @FXML
     private DatePicker signature_date1;
-    @FXML
-    private DatePicker signature_date2;
 
     public void setEditedObject(insurance editedObject) {
         this.editedObject = editedObject;
 
         payment_date1.setValue(editedObject.getPayment_date1());
-        payment_date2.setValue(editedObject.getPayment_date2());
         signature_date1.setValue(editedObject.getSignature_date1());
-        signature_date2.setValue(editedObject.getSignature_date2());
     }
 
 
@@ -147,17 +144,6 @@ public class ActsController implements Initializable  {
         else
             vet.setSignature_date1(null);
 
-
-        if (!payment_date2.getEditor().getText().isEmpty())
-            vet.setPayment_date2(payment_date2.getValue());
-        else
-            vet.setPayment_date2(null);
-
-        if (!signature_date2.getEditor().getText().isEmpty())
-            vet.setSignature_date2(signature_date2.getValue());
-        else
-            vet.setSignature_date2(null);
-
         return vet;
     }
 
@@ -182,6 +168,7 @@ public class ActsController implements Initializable  {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
     }
 }
 

@@ -1,4 +1,4 @@
-package project;
+package project.Controllers;
 
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
@@ -6,6 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.util.Duration;
+import project.Helpers.UpdateStatus;
+import project.Model.insurance;
+import project.Helpers.insuranceService;
 
 import java.net.URL;
 import java.util.ResourceBundle;

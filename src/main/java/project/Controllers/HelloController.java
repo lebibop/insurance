@@ -1,4 +1,4 @@
-package project;
+package project.Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,10 +13,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import project.Helpers.UpdateStatus;
+import project.Helpers.insuranceService;
+import project.Model.insurance;
+
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -65,7 +72,7 @@ public class HelloController implements Initializable {
     private TableView<insurance> table = new TableView<>();
 
     ObservableList<insurance> List = FXCollections.observableArrayList();
-    insuranceService insuranceService = new insuranceService();
+    project.Helpers.insuranceService insuranceService = new insuranceService();
 
     public static String convertWithCommas(int number) {
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
@@ -92,7 +99,7 @@ public class HelloController implements Initializable {
             if (selectedID == -1) throw new MyException();
             insurance selectedItem = table.getSelectionModel().getSelectedItem();
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("edit.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/edit.fxml"));
 
                 Parent root = loader.load();
                 // получение контроллера для окна редактирования
@@ -102,7 +109,7 @@ public class HelloController implements Initializable {
 
                 // создание нового окна
                 Stage editStage = new Stage();
-                editStage.setTitle("Edit object");
+                editStage.setTitle("Редактирование");
                 editStage.setScene(new Scene(root));
                 // отображение нового окна как модального
                 editStage.initModality(Modality.APPLICATION_MODAL);
@@ -117,7 +124,7 @@ public class HelloController implements Initializable {
         }
         catch (MyException ex){
             Alert IOAlert = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
-            IOAlert.setContentText("Select row to edit");
+            IOAlert.setContentText("Вы не выбрали элемент");
             IOAlert.showAndWait();
             if(IOAlert.getResult() == ButtonType.OK)
             {
@@ -136,14 +143,14 @@ public class HelloController implements Initializable {
                 FXMLLoader loader;
                 Parent root;
                 if (selectedItem.getPayments_number() == 2) {
-                    loader = new FXMLLoader(getClass().getResource("acts.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("/acts.fxml"));
                     root = loader.load();
                     // получение контроллера для окна редактирования
                     ActsController editController = loader.getController();
                     editController.setEditedObject(selectedItem);
                 }
                 else {
-                    loader = new FXMLLoader(getClass().getResource("acts2.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("/acts2.fxml"));
                     root = loader.load();
                     // получение контроллера для окна редактирования
                     Acts2Controller editController = loader.getController();
@@ -153,7 +160,7 @@ public class HelloController implements Initializable {
 
                 // создание нового окна
                 Stage editStage = new Stage();
-                editStage.setTitle("Edit acts object");
+                editStage.setTitle("Рдактирование актов и выплат");
                 editStage.setScene(new Scene(root));
                 // отображение нового окна как модального
                 editStage.initModality(Modality.APPLICATION_MODAL);
@@ -168,7 +175,7 @@ public class HelloController implements Initializable {
         }
         catch (MyException ex){
             Alert IOAlert = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
-            IOAlert.setContentText("Select row to edit");
+            IOAlert.setContentText("Вы не выбрали элемент");
             IOAlert.showAndWait();
             if(IOAlert.getResult() == ButtonType.OK)
             {
@@ -189,6 +196,32 @@ public class HelloController implements Initializable {
         List.clear();
         List.addAll(insuranceService.getinsurances());
     }
+
+    @FXML
+    private void expiring() {
+        List.clear();
+        List.addAll(insuranceService.getinsurances_expiring());
+    }
+
+    @FXML
+    private void signature() {
+        List.clear();
+        List.addAll(insuranceService.getinsurances_signature());
+    }
+
+    @FXML
+    private void payment() {
+        List.clear();
+        List.addAll(insuranceService.getinsurances_payment());
+    }
+
+    @FXML
+    private void all() {
+        setObList();
+    }
+
+
+
     private void remove_row(ActionEvent event) throws MyException, IOException {
         int selectedID = table.getSelectionModel().getSelectedIndex();
         if (selectedID == -1) throw new MyException();
@@ -219,8 +252,8 @@ public class HelloController implements Initializable {
         }
 
         catch (MyException | IOException myEx){
-            Alert IOAlert = new Alert(Alert.AlertType.ERROR, myEx.getMessage(), ButtonType.OK);
-            IOAlert.setContentText(myEx.getMessage());
+            Alert IOAlert = new Alert(Alert.AlertType.ERROR, "Вы не выбрали ни одного элемента", ButtonType.OK);
+            IOAlert.setContentText("Вы не выбрали ни одного элемента");
             IOAlert.showAndWait();
             if(IOAlert.getResult() == ButtonType.OK)
             {
@@ -251,6 +284,14 @@ public class HelloController implements Initializable {
                         return true;
                     } else if (date_converter(insurance.getConclusion_date().toString()).toLowerCase().contains(lowerCaseFilter)) {
                         return true;
+                    } else if (date_converter(insurance.getBegin_date().toString()).toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    } else if (date_converter(insurance.getEnd_date().toString()).toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    } else if (insurance.getContract_number().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    }else if (insurance.getVin().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
                     } else if (insurance.getType().toLowerCase().contains(lowerCaseFilter)) {
                         return true;
                     } else return String.valueOf(insurance.getCost()).contains(lowerCaseFilter);
@@ -263,8 +304,12 @@ public class HelloController implements Initializable {
         return temp2[2] + '.' + temp2[1] + '.' + temp2[0];
     }
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //table.setStyle("-fx-table-cell-border-color: black; -fx-table-cell-border-width: 0 0 1 0;");
+
         table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         setObList();
@@ -397,6 +442,7 @@ public class HelloController implements Initializable {
                 } else {
 
                     setAlignment(Pos.CENTER);
+                    setTextFill(Color.BLACK);
 
                     if (insurance.getSignature_date1() == null) {
                         setText("Не было");
@@ -420,6 +466,7 @@ public class HelloController implements Initializable {
                 } else {
 
                     setAlignment(Pos.CENTER);
+                    setTextFill(Color.BLACK);
 
                     if (insurance.getPayment_date1() == null) {
                         setText("Не было");
@@ -444,6 +491,7 @@ public class HelloController implements Initializable {
                 } else {
 
                     setAlignment(Pos.CENTER);
+                    setTextFill(Color.BLACK);
 
                     if (insurance.getPayments_number() == 1) {
                         setText(null);
@@ -472,6 +520,7 @@ public class HelloController implements Initializable {
                 } else {
 
                     setAlignment(Pos.CENTER);
+                    setTextFill(Color.BLACK);
 
                     if (insurance.getPayments_number() == 1) {
                         setText(null);
@@ -528,6 +577,24 @@ public class HelloController implements Initializable {
             }
         });
 
+        vin.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(String vin, boolean empty) {
+                super.updateItem(vin, empty);
+                if (empty || vin == null) {
+                    setText(null);
+                    setStyle("");
+                } else {
+                    setText(String.format("(%s)-%s-%s-%s",
+                            vin.substring(0, 3),
+                            vin.substring(3, 6),
+                            vin.substring(6, 8),
+                            vin.substring(8, 10)));
+                    setAlignment(Pos.CENTER);
+                }
+            }
+        });
+
         kv1.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Integer kv1, boolean empty) {
@@ -548,15 +615,33 @@ public class HelloController implements Initializable {
 
         table.setRowFactory(tv -> {
             TableRow<insurance> row = new TableRow<>();
-            row.setStyle("-fx-background-color: white;"); // Здесь можно указать цвет, который вы хотите использовать
+            row.setStyle(""); // Здесь можно указать цвет, который вы хотите использовать
 
             row.selectedProperty().addListener((obs, oldVal, newVal) -> {
                 if (newVal) {
                     row.setStyle("-fx-background-color: #d70e17;"); // Здесь можно указать цвет для выделенной строки
                 }
+                else row.setStyle("");
             });
 
             return row;
+        });
+
+        table.setOnKeyPressed(event -> {
+            if (event.isControlDown() && event.getCode() == KeyCode.C) {
+                // Получение выбранной ячейки
+                var selectedCell = table.getSelectionModel().getSelectedCells().get(0);
+                if (selectedCell.getTableColumn() == contract_number || selectedCell.getTableColumn() == fio) {
+                    // Получение значения из выбранной ячейки
+                    String contractNumber = (String) selectedCell.getTableColumn().getCellData(selectedCell.getRow());
+
+                    // Копирование значения в буфер обмена
+                    Clipboard clipboard = Clipboard.getSystemClipboard();
+                    ClipboardContent content = new ClipboardContent();
+                    content.putString(contractNumber);
+                    clipboard.setContent(content);
+                }
+            }
         });
     }
 }

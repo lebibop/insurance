@@ -1,4 +1,4 @@
-package project;
+package project.Controllers;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,7 +18,7 @@ public class newWindowController {
      * @throws IOException Если произошла ошибка ввода-вывода.
      */
     public static void getNewWindow() throws IOException {
-        getPopUpWindow("add.fxml");
+        getPopUpWindow("/add.fxml");
     }
 
     /**
