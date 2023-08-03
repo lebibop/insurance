@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="646.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controllers.VyruchkaController">
+   <Button layoutX="105.0" layoutY="241.0" mnemonicParsing="false" onAction="#search_money" prefHeight="36.0" prefWidth="418.0" text="Поехали!">
+      <font>
+         <Font name="Sitka Text" size="18.0" />
+      </font></Button>
+   <DatePicker fx:id="ending_date" layoutX="347.0" layoutY="168.0" prefHeight="36.0" prefWidth="175.0" promptText="01.01.2023" />
+   <DatePicker fx:id="starting_date" layoutX="346.0" layoutY="117.0" prefHeight="36.0" prefWidth="175.0" promptText="01.01.2023" />
+   <TextField fx:id="aaaa" editable="false" layoutX="105.0" layoutY="298.0" prefHeight="36.0" prefWidth="418.0">
+      <font>
+         <Font size="20.0" />
+      </font></TextField>
+   <Text layoutX="103.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Начало периода:" wrappingWidth="228.3982391357422">
+      <font>
+         <Font name="Sitka Text" size="16.0" />
+      </font>
+   </Text>
+   <Text layoutX="104.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Окончание периода:" wrappingWidth="228.3982391357422">
+      <font>
+         <Font name="Sitka Text" size="16.0" />
+      </font>
+   </Text>
+   <Text layoutX="58.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Подсчет выручки за определенный период" textAlignment="CENTER" wrappingWidth="535.5982513427734">
+      <font>
+         <Font name="Sitka Text" size="23.0" />
+      </font>
+   </Text>
+</AnchorPane>

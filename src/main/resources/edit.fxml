@@ -8,8 +8,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="686.0" prefWidth="866.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controllers.EditController">
-   <Button fx:id="save" layoutX="33.0" layoutY="627.0" mnemonicParsing="false" onAction="#saveNewVetToDb" prefHeight="34.0" prefWidth="798.0" text="Сохранить">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="686.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controllers.EditController">
+   <Button layoutX="33.0" layoutY="627.0" mnemonicParsing="false" onAction="#saveNewVetToDb" prefHeight="34.0" prefWidth="798.0" text="Сохранить">
       <font>
          <Font name="Sitka Text" size="20.0" />
       </font></Button>
@@ -19,7 +19,7 @@
    <DatePicker fx:id="begin_date" layoutX="246.0" layoutY="231.0" prefHeight="36.0" prefWidth="175.0" promptText="01.01.2023" />
    <TextField fx:id="fio" layoutX="246.0" layoutY="181.0" prefHeight="36.0" prefWidth="175.0" promptText="Иванов И.И." />
    <TextField fx:id="contract_number" layoutX="246.0" layoutY="379.0" prefHeight="36.0" prefWidth="175.0" promptText="ТТТ 1234567890" />
-   <TextField fx:id="vin" layoutX="246.0" layoutY="427.0" prefHeight="36.0" prefWidth="175.0" promptText="1234567890ABCDEFGH" />
+   <TextField fx:id="vin" layoutX="246.0" layoutY="427.0" prefHeight="36.0" prefWidth="175.0" promptText="9111245859" />
    <ChoiceBox fx:id="percentage" layoutX="246.0" layoutY="521.0" prefHeight="36.0" prefWidth="175.0" />
    <TextField fx:id="cost" layoutX="246.0" layoutY="475.0" prefHeight="36.0" prefWidth="175.0" promptText="10000" />
    <ChoiceBox fx:id="payments_number" layoutX="246.0" layoutY="567.0" prefHeight="36.0" prefWidth="175.0" />
@@ -55,7 +55,7 @@
          <Font name="Sitka Text" size="16.0" />
       </font>
    </Text>
-   <Text layoutX="457.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VIN номер:" wrappingWidth="186.7982177734375">
+   <Text layoutX="457.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер телефона(без +7):" wrappingWidth="206.7982177734375">
       <font>
          <Font name="Sitka Text" size="16.0" />
       </font>

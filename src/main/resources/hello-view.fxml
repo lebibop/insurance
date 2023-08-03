@@ -7,9 +7,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="1557.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controllers.HelloController">
-    <TableView fx:id="table" editable="true" layoutX="15.0" layoutY="73.0" prefHeight="532.0" prefWidth="1535.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="1557.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controllers.HelloController">
+    <TableView fx:id="table" editable="true" layoutX="15.0" layoutY="90.0" prefHeight="514.0" prefWidth="1535.0">
       <columns>
           <TableColumn fx:id="conclusion_date" prefWidth="90.39999103546143">
               <graphic>
@@ -94,43 +95,57 @@
           </TableColumn>
       </columns>
     </TableView>
-    <TextField fx:id="search" layoutX="461.0" layoutY="23.0" prefHeight="30.0" prefWidth="241.0" promptText="Найти клиента" />
-    <Button fx:id="add" layoutX="15.0" layoutY="19.0" mnemonicParsing="false" onAction="#add" prefHeight="39.0" prefWidth="188.0" text="+  НОВЫЙ ПОЛИС">
+    <TextField fx:id="search" layoutX="1074.0" layoutY="11.0" prefHeight="30.0" prefWidth="475.0" promptText="Найти клиента" />
+    <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#add" prefHeight="30.0" prefWidth="188.0" text="+  НОВЫЙ ПОЛИС">
       <font>
          <Font name="Sitka Text" size="14.0" />
       </font></Button>
-    <Button fx:id="delete" layoutX="1355.0" layoutY="25.0" mnemonicParsing="false" onAction="#delete" prefHeight="30.0" prefWidth="188.0" text="-  удалить полис">
+    <Button layoutX="1395.0" layoutY="50.0" mnemonicParsing="false" onAction="#delete" prefHeight="30.0" prefWidth="154.0" text="-  удалить полис">
       <font>
          <Font name="Sitka Text" size="13.0" />
       </font></Button>
-   <Button fx:id="change" layoutX="1133.0" layoutY="25.0" mnemonicParsing="false" onAction="#edit" prefHeight="30.0" prefWidth="188.0" text="+  изменения">
+   <Button layoutX="1235.0" layoutY="50.0" mnemonicParsing="false" onAction="#edit" prefHeight="30.0" prefWidth="154.0" text="+  внести изменения">
       <font>
          <Font name="Sitka Text" size="13.0" />
       </font>
    </Button>
-   <Button fx:id="acts" layoutX="916.0" layoutY="25.0" mnemonicParsing="false" onAction="#acts" prefHeight="30.0" prefWidth="188.0" text="+  акты и выплаты">
+   <Button layoutX="1074.0" layoutY="50.0" mnemonicParsing="false" onAction="#acts" prefHeight="30.0" prefWidth="154.0" text="+  акты и выплаты">
       <font>
          <Font name="Sitka Text" size="13.0" />
       </font>
    </Button>
-   <Button fx:id="expiring" layoutX="240.0" layoutY="11.0" mnemonicParsing="false" onAction="#expiring" prefHeight="15.0" prefWidth="188.0" text="заканчивается полис">
+   <Button fx:id="expiring" layoutX="719.0" layoutY="11.0" mnemonicParsing="false" onAction="#expiring" prefHeight="30.0" prefWidth="188.0" text="пролонгация за 2 мес.">
       <font>
          <Font name="Sitka Text" size="14.0" />
       </font>
    </Button>
-   <Button fx:id="all" layoutX="240.0" layoutY="42.0" mnemonicParsing="false" onAction="#all" prefHeight="15.0" prefWidth="188.0" text="общий список">
+   <Button fx:id="all" layoutX="14.0" layoutY="50.0" mnemonicParsing="false" onAction="#all" prefHeight="30.0" prefWidth="188.0" text="ОСНОВНОЙ СПИСОК">
       <font>
          <Font name="Sitka Text" size="14.0" />
       </font>
    </Button>
-   <Button fx:id="signature" layoutX="719.0" layoutY="9.0" mnemonicParsing="false" onAction="#signature" prefHeight="15.0" prefWidth="188.0" text="акты">
+   <Button fx:id="signature" layoutX="913.0" layoutY="11.0" mnemonicParsing="false" onAction="#signature" prefHeight="30.0" prefWidth="154.0" text="проверка актов">
       <font>
          <Font name="Sitka Text" size="14.0" />
       </font>
    </Button>
-   <Button fx:id="payment" layoutX="719.0" layoutY="41.0" mnemonicParsing="false" onAction="#payment" prefHeight="15.0" prefWidth="188.0" text="выплаты">
+   <Button fx:id="payment" layoutX="913.0" layoutY="50.0" mnemonicParsing="false" onAction="#payment" prefHeight="30.0" prefWidth="154.0" text="проверка выплат">
       <font>
          <Font name="Sitka Text" size="14.0" />
       </font>
    </Button>
+   <Button layoutX="719.0" layoutY="50.0" mnemonicParsing="false" onAction="#search_money" prefHeight="30.0" prefWidth="188.0" text="выручка за период">
+      <font>
+         <Font name="Sitka Text" size="14.0" />
+      </font></Button>
+   <Text fx:id="mode" layoutX="229.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="475.1999999999998">
+      <font>
+         <Font name="Sitka Text" size="19.0" />
+      </font>
+   </Text>
+   <Text fx:id="mode1" fill="RED" layoutX="241.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="454.93690490722656">
+      <font>
+         <Font name="Sitka Text Italic" size="14.0" />
+      </font>
+   </Text>
 </AnchorPane>

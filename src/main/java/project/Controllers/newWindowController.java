@@ -17,8 +17,8 @@ public class newWindowController {
      * Открывает новое окно для добавления нового работника.
      * @throws IOException Если произошла ошибка ввода-вывода.
      */
-    public static void getNewWindow() throws IOException {
-        getPopUpWindow("/add.fxml");
+    public static void getNewWindow(String s) throws IOException {
+        getPopUpWindow(s);
     }
 
     /**

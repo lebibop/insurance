@@ -79,7 +79,7 @@ public class AddController implements Initializable  {
      */
     private boolean validateInputs() {
         Alert IOAlert = new Alert(Alert.AlertType.ERROR, "Input Error", ButtonType.OK);
-        if (fio.getText().equals("") || contract_number.getText().equals("") || cost.getText().equals("")|| conclusion_date.getValue() == null || begin_date.getValue() == null || year.getValue().equals("год/месяц/день")) {
+        if (fio.getText().equals("") || contract_number.getText().equals("") || cost.getText().equals("")|| conclusion_date.getValue() == null || begin_date.getValue() == null || year.getValue().equals("год/месяц/день") || vin.getText().equals("")) {
             IOAlert.setContentText("Заполнены не все поля!");
             IOAlert.showAndWait();
             if(IOAlert.getResult() == ButtonType.OK)
@@ -109,7 +109,24 @@ public class AddController implements Initializable  {
             return false;
         }
 
-
+        if (isNumeric(vin.getText())){
+            IOAlert.setContentText("Для номера телефона вводите только цифры(+7 писать не нужно)");
+            IOAlert.showAndWait();
+            if(IOAlert.getResult() == ButtonType.OK)
+            {
+                IOAlert.close();
+            }
+            return false;
+        }
+        if (String.valueOf(vin.getText()).length() != 10){
+            IOAlert.setContentText("В номере телефоне должно быть 9 цифр(+7 писать не нужно)");
+            IOAlert.showAndWait();
+            if(IOAlert.getResult() == ButtonType.OK)
+            {
+                IOAlert.close();
+            }
+            return false;
+        }
         return true;
     }
 

@@ -131,8 +131,24 @@ public class EditController implements Initializable  {
             }
             return false;
         }
-
-
+        if (isNumeric(vin.getText())){
+            IOAlert.setContentText("Для номера телефона вводите только цифры(+7 писать не нужно)");
+            IOAlert.showAndWait();
+            if(IOAlert.getResult() == ButtonType.OK)
+            {
+                IOAlert.close();
+            }
+            return false;
+        }
+        if ((String.valueOf(vin.getText())).length() != 10){
+            IOAlert.setContentText("В номере телефоне должно быть 9 цифр(+7 писать не нужно)");
+            IOAlert.showAndWait();
+            if(IOAlert.getResult() == ButtonType.OK)
+            {
+                IOAlert.close();
+            }
+            return false;
+        }
         return true;
     }
 

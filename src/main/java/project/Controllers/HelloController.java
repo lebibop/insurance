@@ -17,6 +17,7 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -29,6 +30,7 @@ import java.net.URL;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
@@ -69,6 +71,10 @@ public class HelloController implements Initializable {
     @FXML
     private TextField search;
     @FXML
+    private Text mode;
+    @FXML
+    private Text mode1;
+    @FXML
     private TableView<insurance> table = new TableView<>();
 
     ObservableList<insurance> List = FXCollections.observableArrayList();
@@ -85,7 +91,7 @@ public class HelloController implements Initializable {
     }
     @FXML
     private void add(ActionEvent event) throws IOException {
-        newWindowController.getNewWindow();
+        newWindowController.getNewWindow("/add.fxml");
         if(UpdateStatus.isIsInsuranceAdded()) {
             refreshScreen(event);
             UpdateStatus.setIsInsuranceAdded(false);
@@ -195,24 +201,32 @@ public class HelloController implements Initializable {
     private void setObList() {
         List.clear();
         List.addAll(insuranceService.getinsurances());
+        mode.setText("");
+        mode1.setText("");
     }
 
     @FXML
     private void expiring() {
         List.clear();
         List.addAll(insuranceService.getinsurances_expiring());
+        mode.setText("Список пролонгаций за 2 месяца");
+        mode1.setText("Для возврата к основному списку нажми кнопку ОСН. СПИСОК");
     }
 
     @FXML
     private void signature() {
         List.clear();
         List.addAll(insuranceService.getinsurances_signature());
+        mode.setText("Список актов, которые не были подписаны");
+        mode1.setText("Для возврата к основному списку нажми кнопку ОСН. СПИСОК");
     }
 
     @FXML
     private void payment() {
         List.clear();
         List.addAll(insuranceService.getinsurances_payment());
+        mode.setText("Список выплат, которые не были осуществлены");
+        mode1.setText("Для возврата к основному списку нажми кнопку ОСН. СПИСОК");
     }
 
     @FXML
@@ -303,6 +317,25 @@ public class HelloController implements Initializable {
         String[] temp2 = temp.split("-");
         return temp2[2] + '.' + temp2[1] + '.' + temp2[0];
     }
+
+    @FXML
+    private void search_money() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/vyruchka.fxml")));
+
+        // Создаем новую сцену с корневым узлом
+        Scene scene = new Scene(root);
+
+        // Создаем новое всплывающее окно
+        Stage popupStage = new Stage();
+
+        // Устанавливаем сцену для всплывающего окна
+        popupStage.setScene(scene);
+
+        // Показываем всплывающее окно
+        popupStage.show();
+    }
+
+
 
 
 
@@ -585,7 +618,8 @@ public class HelloController implements Initializable {
                     setText(null);
                     setStyle("");
                 } else {
-                    setText(String.format("(%s)-%s-%s-%s",
+                    setText(String.format("%s (%s)-%s-%s-%s",
+                            "+7",
                             vin.substring(0, 3),
                             vin.substring(3, 6),
                             vin.substring(6, 8),
@@ -631,7 +665,7 @@ public class HelloController implements Initializable {
             if (event.isControlDown() && event.getCode() == KeyCode.C) {
                 // Получение выбранной ячейки
                 var selectedCell = table.getSelectionModel().getSelectedCells().get(0);
-                if (selectedCell.getTableColumn() == contract_number || selectedCell.getTableColumn() == fio) {
+                if (selectedCell.getTableColumn() == contract_number || selectedCell.getTableColumn() == fio || selectedCell.getTableColumn() == vin) {
                     // Получение значения из выбранной ячейки
                     String contractNumber = (String) selectedCell.getTableColumn().getCellData(selectedCell.getRow());
 

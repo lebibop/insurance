@@ -41,25 +41,6 @@ public class insuranceService {
     }
 
     /**
-     * Обновляет данные о работнике в базе данных.
-     * @param insurance объект, представляющий работника
-     * @throws HibernateException если возникла ошибка при работе с Hibernate
-     */
-    public void updateinsurance(insurance insurance) {
-        Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            session.update(insurance);
-            transaction.commit();
-        } catch (Exception ex) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            ex.printStackTrace();
-        }
-    }
-
-    /**
      * Удаляет данные о работнике из базы данных.
      * @param insurance объект, представляющий работника
      * @throws HibernateException если возникла ошибка при работе с Hibernate
@@ -85,7 +66,11 @@ public class insuranceService {
      */
     public List<insurance> getinsurances() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from insurance order by conclusion_date desc", insurance.class).list();
+            String hql = "from insurance order by conclusion_date desc";
+            Query<insurance> query = session.createQuery(hql, insurance.class);
+            List<insurance> a = query.list();
+            UpdateStatus.save(a);
+            return a;
         } catch (Exception ex) {
             ex.printStackTrace();
             return new ArrayList<>();
@@ -128,6 +113,20 @@ public class insuranceService {
         } catch (Exception ex) {
             ex.printStackTrace();
             return new ArrayList<>();
+        }
+    }
+
+    public int getinsurances_sum(LocalDate startDate, LocalDate endDate) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "select sum(coalesce(kv1, 0) + coalesce(kv2, 0)) from insurance where conclusion_date between :startDate and :endDate";
+            Query<Number> query = session.createQuery(hql, Number.class);
+            query.setParameter("startDate", startDate);
+            query.setParameter("endDate", endDate);
+            Number result = query.uniqueResult();
+            return result != null ? result.intValue() : 0;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return 0;
         }
     }
 
