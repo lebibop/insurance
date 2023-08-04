@@ -47,7 +47,7 @@ public class SceneController {
         logger.info("Changing scene");
 
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Objects.requireNonNull(SceneController.class.getResource("hello-view.fxml")));
+        loader.setLocation(Objects.requireNonNull(SceneController.class.getResource("/hello-view.fxml")));
 
         Parent main = loader.load();
         Scene visitScene = new Scene(main);

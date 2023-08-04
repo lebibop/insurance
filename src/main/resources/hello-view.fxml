@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="1557.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controllers.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="1557.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controllers.HelloController">
     <TableView fx:id="table" editable="true" layoutX="15.0" layoutY="90.0" prefHeight="514.0" prefWidth="1535.0">
       <columns>
           <TableColumn fx:id="conclusion_date" prefWidth="90.39999103546143">
@@ -96,20 +96,20 @@
       </columns>
     </TableView>
     <TextField fx:id="search" layoutX="1074.0" layoutY="11.0" prefHeight="30.0" prefWidth="475.0" promptText="Найти клиента" />
-    <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#add" prefHeight="30.0" prefWidth="188.0" text="+  НОВЫЙ ПОЛИС">
+    <Button fx:id="add" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#add" prefHeight="30.0" prefWidth="188.0" text="+  НОВЫЙ ПОЛИС">
       <font>
          <Font name="Sitka Text" size="14.0" />
       </font></Button>
-    <Button layoutX="1395.0" layoutY="50.0" mnemonicParsing="false" onAction="#delete" prefHeight="30.0" prefWidth="154.0" text="-  удалить полис">
+    <Button fx:id="delete" layoutX="1395.0" layoutY="50.0" mnemonicParsing="false" onAction="#delete" prefHeight="30.0" prefWidth="154.0" text="-  удалить полис">
       <font>
          <Font name="Sitka Text" size="13.0" />
       </font></Button>
-   <Button layoutX="1235.0" layoutY="50.0" mnemonicParsing="false" onAction="#edit" prefHeight="30.0" prefWidth="154.0" text="+  внести изменения">
+   <Button fx:id="change" layoutX="1235.0" layoutY="50.0" mnemonicParsing="false" onAction="#edit" prefHeight="30.0" prefWidth="154.0" text="+  внести изменения">
       <font>
          <Font name="Sitka Text" size="13.0" />
       </font>
    </Button>
-   <Button layoutX="1074.0" layoutY="50.0" mnemonicParsing="false" onAction="#acts" prefHeight="30.0" prefWidth="154.0" text="+  акты и выплаты">
+   <Button fx:id="acts" layoutX="1074.0" layoutY="50.0" mnemonicParsing="false" onAction="#acts" prefHeight="30.0" prefWidth="154.0" text="+  акты и выплаты">
       <font>
          <Font name="Sitka Text" size="13.0" />
       </font>

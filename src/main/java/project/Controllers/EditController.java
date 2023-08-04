@@ -96,6 +96,11 @@ public class EditController implements Initializable  {
         }
     }
 
+    public static boolean containsOnlyDigits(String str) {
+        // Проверка наличия только цифр в строке
+        return str.matches("[0-9]+");
+    }
+
     /**
      * Проверяет корректность введенных данных.
      * @return true, если данные корректны, иначе false
@@ -131,7 +136,7 @@ public class EditController implements Initializable  {
             }
             return false;
         }
-        if (isNumeric(vin.getText())){
+        if (!containsOnlyDigits(vin.getText())){
             IOAlert.setContentText("Для номера телефона вводите только цифры(+7 писать не нужно)");
             IOAlert.showAndWait();
             if(IOAlert.getResult() == ButtonType.OK)
@@ -140,8 +145,10 @@ public class EditController implements Initializable  {
             }
             return false;
         }
-        if ((String.valueOf(vin.getText())).length() != 10){
-            IOAlert.setContentText("В номере телефоне должно быть 9 цифр(+7 писать не нужно)");
+        if ((vin.getText()).length() != 10){
+            System.out.println(containsOnlyDigits(vin.getText()));
+            System.out.println((vin.getText()).length());
+            IOAlert.setContentText("В номере телефоне должно быть 10 цифр(+7 писать не нужно)");
             IOAlert.showAndWait();
             if(IOAlert.getResult() == ButtonType.OK)
             {
@@ -170,7 +177,7 @@ public class EditController implements Initializable  {
                 vet.setEnd_date(begin_date.getValue().plusDays(Integer.parseInt(kolvo.getText())).minusDays(1));
         vet.setFio((fio.getText()).toUpperCase());
         vet.setContract_number(contract_number.getText().toUpperCase());
-        vet.setVin(vin.getText().toUpperCase());
+        vet.setVin(vin.getText());
         vet.setCost(Integer.parseInt(cost.getText()));
         vet.setPercentage(percentage.getValue());
         vet.setPayments_number(payments_number.getValue());

@@ -73,6 +73,11 @@ public class AddController implements Initializable  {
         }
     }
 
+    public static boolean containsOnlyDigits(String str) {
+        // Проверка наличия только цифр в строке
+        return str.matches("[0-9]+");
+    }
+
     /**
      * Проверяет корректность введенных данных.
      * @return true, если данные корректны, иначе false
@@ -108,8 +113,7 @@ public class AddController implements Initializable  {
             }
             return false;
         }
-
-        if (isNumeric(vin.getText())){
+        if (!containsOnlyDigits(vin.getText())){
             IOAlert.setContentText("Для номера телефона вводите только цифры(+7 писать не нужно)");
             IOAlert.showAndWait();
             if(IOAlert.getResult() == ButtonType.OK)
@@ -118,8 +122,10 @@ public class AddController implements Initializable  {
             }
             return false;
         }
-        if (String.valueOf(vin.getText()).length() != 10){
-            IOAlert.setContentText("В номере телефоне должно быть 9 цифр(+7 писать не нужно)");
+        if ((vin.getText()).length() != 10){
+            System.out.println(containsOnlyDigits(vin.getText()));
+            System.out.println((vin.getText()).length());
+            IOAlert.setContentText("В номере телефоне должно быть 10 цифр(+7 писать не нужно)");
             IOAlert.showAndWait();
             if(IOAlert.getResult() == ButtonType.OK)
             {
