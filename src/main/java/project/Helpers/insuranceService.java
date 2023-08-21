@@ -68,9 +68,9 @@ public class insuranceService {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             String hql = "from insurance order by conclusion_date desc";
             Query<insurance> query = session.createQuery(hql, insurance.class);
-            List<insurance> a = query.list();
-            UpdateStatus.save(a);
-            return a;
+//            List<insurance> a = query.list();
+//            UpdateStatus.save(a);
+            return query.list();
         } catch (Exception ex) {
             ex.printStackTrace();
             return new ArrayList<>();
